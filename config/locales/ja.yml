@@ -6,6 +6,9 @@ ja:
         update: "この本を編集する"
   layout:
     title: "書籍アプリ"
+  errors:
+    messages:
+      blank: "を入力してください。"
   books:
     common:
       new: "新しい本を追加"
