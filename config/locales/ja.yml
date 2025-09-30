@@ -196,10 +196,11 @@ ja:
       error: エラー
       validation_error: "%{errors}があるため、この%{name}は保存できませんでした"
     pagination:
-      first: "<< 最初"
-      previous: "< 前へ"
-      next: "次へ >"
-      last: "最後 >>"
+      first: "&laquo; 最初"
+      previous: "&lsaquo; 前へ"
+      next: "次へ &rsaquo;"
+      last: "最後 &raquo;"
+      truncate: "&hellip;"
   controllers:
     common:
       notice_create: "%{name}が作成されました。"
