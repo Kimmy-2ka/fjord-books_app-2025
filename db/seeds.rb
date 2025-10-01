@@ -42,4 +42,16 @@ Book.create!(
   )
 end
 
+50.times do
+  password = Faker::Internet.password
+  User.create!(
+    email: Faker::Internet.unique.email,
+    password: password,
+    password_confirmation: password,
+    postal_code: Faker::Address.postcode,
+    address: "#{Faker::Address.state} #{Faker::Address.city} #{Faker::Address.street_name} #{Faker::Address.building_number}",
+    self_introduction: Faker::Lorem.sentence
+  )
+end
+
 puts '初期データの投入が完了しました。' # rubocop:disable Rails/Output

@@ -201,8 +201,16 @@ ja:
       previous: '‹ 前'
       next: '次 ›'
       truncate: '…'
+  users:
+    show:
+      title: "%{user}のプロフィール"
   controllers:
     common:
       notice_create: "%{name}が作成されました。"
       notice_update: "%{name}が更新されました。"
       notice_destroy: "%{name}が削除されました。"
+  devise:
+    shared:
+      links:
+        edit_profile: "プロフィール編集"
+        log_out: "ログアウト"
