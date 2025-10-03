@@ -1,0 +1,31 @@
+ja:
+  helpers:
+    submit:
+      book:
+        create: "この本を追加する"
+        update: "この本を編集する"
+  layout:
+    title: "書籍アプリ"
+  success:
+    messages:
+      create: "%{model}は正常に追加されました。"
+      update: "%{model}は正常に更新されました。"
+      destroy: "%{model}は正常に削除されました。"
+  errors:
+    messages:
+      blank: "を入力してください。"
+    summary:
+      one: "%{count}件のエラーにより、この%{model}は保存されませんでした："
+      other: "%{count}件のエラーにより、この%{model}は保存されませんでした："
+  books:
+    common:
+      new: "新しい本を追加"
+      show: "この本を見る"
+      back: "書籍一覧に戻る"
+    index:
+      title: "書籍一覧"
+    show:
+      edit: "この本を編集"
+      destroy: "この本を削除"
+    edit:
+      title: "編集中の本"
