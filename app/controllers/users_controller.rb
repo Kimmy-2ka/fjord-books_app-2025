@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :set_book, only: :show
+  before_action :set_user, only: :show
   def index
     @users = User.order(:id).page(params[:page])
   end
@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   private
 
-  def set_book
+  def set_user
     @user = User.find(params.expect(:id))
   end
 end
