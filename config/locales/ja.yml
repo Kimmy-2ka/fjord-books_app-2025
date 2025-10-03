@@ -195,6 +195,8 @@ ja:
       title_edit: "%{name}の編集"
       error: エラー
       validation_error: "%{errors}があるため、この%{name}は保存できませんでした"
+      app_name: "読書アプリ"
+      logged_in_as: "ログイン中"
     pagination:
       first: '« 最初'
       last: '最後 »'

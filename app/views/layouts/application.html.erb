@@ -24,26 +24,29 @@
   </head>
 
   <body class="<%= params[:action] %>">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
       <div class="container-fluid">
-        <a class="navbar-brand" href="/books">The Book App</a>
+        <%= link_to t("views.common.app_name"), books_path, class: "navbar-brand" %>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link <%= 'active' if current_page?("books_path") %>" href="/books">books</a>
+              <%= link_to Book.model_name.human, books_path, class: "nav-link #{'active' if current_page?(books_path)}" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to User.model_name.human, users_path, class: "nav-link #{'active' if current_page?(users_path)}" %>
             </li>
           </ul>
-          <p class="navbar-text float-right">
+          <p class="navbar-text float-right mb-0">
             <% if user_signed_in? %>
-              Logged in as <strong><%= current_user.email %></strong>.
-              <%= link_to "Edit profile", edit_user_registration_path, class: "navbar-link" %> |
-              <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class: "navbar-link"  %>
+              <%= t("views.common.logged_in_as") %>:<strong><%= current_user.email %></strong>
+              <%= link_to t("devise.shared.links.edit_profile"), edit_user_registration_path, class: "navbar-link" %> |
+              <%= link_to t("devise.shared.links.log_out"), destroy_user_session_path, data: { turbo_method: :delete }, class: "navbar-link" %>
             <% else %>
-              <%= link_to "Sign up", new_user_registration_path, class: "navbar-link"  %> |
-              <%= link_to "Login", new_user_session_path, class: "navbar-link"  %>
+              <%= link_to t("devise.shared.links.sign_up"), new_user_registration_path, class: "navbar-link" %> |
+              <%= link_to t("devise.shared.links.sign_in"), new_user_session_path, class: "navbar-link" %>
             <% end %>
           </p>
         </div>
