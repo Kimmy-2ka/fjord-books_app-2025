@@ -28,9 +28,10 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
-  <div class="field">
-    <%= f.label :avatar, style: "display: block" %>
-    <%= f.file_field :avatar %>
+  <div class="field_avatar">
+    <%= f.label :avatar %><br />
+    <%= f.file_field :avatar %><br />
+    <%= t(".avatar_hint") %>
   </div>
 
   <div class="field">
