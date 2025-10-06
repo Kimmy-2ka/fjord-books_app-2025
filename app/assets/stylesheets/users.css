@@ -2,6 +2,10 @@
 Users-avatar
 ****************/
 
+.avatar {
+  height: 110px;
+}
+
 .avatar img {
   border-radius: 50%;
 }
