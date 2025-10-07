@@ -26,20 +26,22 @@
   <body class="<%= params[:action] %>">
     <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
       <div class="container-fluid">
-        <%= link_to t("views.common.app_name"), books_path, class: "navbar-brand" %>
+        <span class="navbar-brand"><%= t("views.common.app_name") %></span>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <%= link_to Book.model_name.human, books_path, class: "nav-link #{'active' if current_page?(books_path)}" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to User.model_name.human, users_path, class: "nav-link #{'active' if current_page?(users_path)}" %>
-            </li>
-          </ul>
-          <p class="navbar-text float-right mb-0">
+          <% if user_signed_in? %>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <%= link_to Book.model_name.human, books_path, class: "nav-link #{'active' if current_page?(books_path)}" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to User.model_name.human, users_path, class: "nav-link #{'active' if current_page?(users_path)}" %>
+              </li>
+            </ul>
+         <% end %>
+          <p class="navbar-text ms-auto mb-0">
             <% if user_signed_in? %>
               <%= t("views.common.logged_in_as") %>:<strong><%= current_user.email %></strong>
               <%= link_to t("devise.shared.links.edit_profile"), edit_user_registration_path, class: "navbar-link" %> |
