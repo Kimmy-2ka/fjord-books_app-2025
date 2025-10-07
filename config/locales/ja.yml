@@ -215,6 +215,8 @@ ja:
   # devise-i18n-viewsをオーバーライド
   devise:
     registrations:
+      common:
+        avatar_hint: "jpg, png, gif 形式のみ対応しています。画像は正方形に切り抜かれます。"
       edit:
         title: "アカウント編集"
-        avatar_hint: "jpg, png, gif 形式のみ対応しています。画像は正方形に切り抜かれます。"
+

@@ -28,12 +28,6 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
-  <div class="field_avatar">
-    <%= f.label :avatar %><br />
-    <%= f.file_field :avatar %><br />
-    <%= t(".avatar_hint") %>
-  </div>
-
   <div class="field">
     <%= f.label :current_password %> <i>(<%= t('.we_need_your_current_password_to_confirm_your_changes') %>)</i><br />
     <%= f.password_field :current_password, autocomplete: "current-password" %>
