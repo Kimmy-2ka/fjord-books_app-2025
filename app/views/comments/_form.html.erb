@@ -1,0 +1,9 @@
+<%= form_with(model: [commentable, commentable.comments.build]) do |form| %>
+
+  <div class="mb-3">
+    <%= form.label :content, class: "form-label", style: "display: block" %>
+    <%= form.text_area :content, required: true, class: "form-control" %>
+  </div>
+
+  <%= form.submit class: "btn btn-primary" %>
+<% end %>
