@@ -1,5 +1,5 @@
 <% @comments.each do |comment| %>
-  <div class="show-item">
+  <div class="show-item comment">
     <p>
       <strong><%= User.model_name.human %>:</strong>
       <%= comment.user.name || comment.user.email %>
@@ -13,5 +13,10 @@
     <p><strong><%= Comment.human_attribute_name(:content) %>:</strong>
       <%= comment.content %>
     </p>
+
+    <% if comment.user == current_user %>
+      <%= button_to t('views.common.destroy', name: Comment.model_name.human), polymorphic_path([commentable, comment]), method: :delete %>
+    <% end %>
+
   </div>
 <% end %>
