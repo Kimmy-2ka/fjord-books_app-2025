@@ -6,12 +6,12 @@ class ReportsController < ApplicationController
 
   # GET /reports or /reports.json
   def index
-    @reports = Report.order(:id).page(params[:page])
+    @reports = Report.includes(:user).order(:id).page(params[:page])
   end
 
   # GET /reports/1 or /reports/1.json
   def show
-    @comments = @report.comments
+    @comments = @report.comments.includes(:user)
   end
 
   # GET /reports/new
