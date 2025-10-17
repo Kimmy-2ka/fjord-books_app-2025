@@ -12,6 +12,7 @@ class ReportsController < ApplicationController
   # GET /reports/1 or /reports/1.json
   def show
     @comments = @report.comments.includes(:user)
+    @comment = @report.comments.build
   end
 
   # GET /reports/new
@@ -62,6 +63,6 @@ class ReportsController < ApplicationController
   end
 
   def ensure_user
-    redirect_to new_report_path unless @report.user == current_user
+    redirect_to report_path unless @report.user == current_user
   end
 end
