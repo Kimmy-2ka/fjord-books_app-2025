@@ -1,0 +1,31 @@
+<% title = t('.title', user: @user.email) %>
+<% content_for :title, title %>
+
+<h1><%= title %></h1>
+
+<div class="show-item">
+  <p>
+    <strong><%= User.human_attribute_name(:email) %>:</strong>
+    <%= @user.email %>
+  </p>
+
+  <p>
+    <strong><%= User.human_attribute_name(:postal_code) %>:</strong>
+    <%= @user.postal_code %>
+  </p>
+
+  <p>
+    <strong><%= User.human_attribute_name(:address) %>:</strong>
+    <%= @user.address %>
+  </p>
+
+  <p>
+    <strong><%= User.human_attribute_name(:self_introduction) %>:</strong>
+    <%= @user.self_introduction %>
+  </p>
+
+</div>
+
+<nav class="page-nav">
+  <%= link_to t('views.common.back', name: User.model_name.human), users_path %>
+</nav>

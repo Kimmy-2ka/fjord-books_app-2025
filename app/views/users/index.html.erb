@@ -1,0 +1,25 @@
+<% title = t('views.common.title_index', name: i18n_pluralize(User.model_name.human)) %>
+<% content_for :title, title %>
+
+<h1><%= title %></h1>
+
+<div id="users" class="mx-5">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col" class="w-25"><%= User.human_attribute_name(:email) %></th>
+        <th scope="col" class="w-75"><%= User.human_attribute_name(:self_introduction) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr id="<%= dom_id user %>">
+          <th scope="row"><%= link_to user.email, user %></th>
+          <td> <%= user.self_introduction %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= paginate @users %>
