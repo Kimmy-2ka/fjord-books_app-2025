@@ -1,5 +1,9 @@
 <div id="<%= dom_id user %>">
 
+  <p class="avatar">
+    <%= image_tag user.avatar.variant(resize_to_fill: [100, 100]) if user.avatar.attached? %>
+  </p>
+
   <p>
     <strong><%= User.human_attribute_name(:email) %>:</strong>
     <%= user.email %>

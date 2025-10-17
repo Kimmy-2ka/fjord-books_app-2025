@@ -17,3 +17,9 @@
   <%= f.label :self_introduction %><br />
   <%= f.text_area :self_introduction %>
 </div>
+
+<div class="field_avatar">
+  <%= f.label :avatar %><br />
+  <%= f.file_field :avatar %><br />
+  <%= t("devise.registrations.common.avatar_hint") %>
+</div>
