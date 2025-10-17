@@ -6,11 +6,12 @@
   </p>
 
   <p>
-    <strong><%= Report.human_attribute_name(:created_at) %>:</strong>
+    <strong><%= Comment.human_attribute_name(:created_at) %>:</strong>
     <%= l(comment.created_at, format: :long) %>
   </p>
 
-  <p><strong><%= Comment.human_attribute_name(:content) %>:</strong>
+  <p>
+    <strong><%= Comment.human_attribute_name(:content) %>:</strong>
     <%= comment.content %>
   </p>
 
