@@ -63,6 +63,8 @@ class ReportsController < ApplicationController
   end
 
   def ensure_user
-    redirect_to report_path unless @report.user == current_user
+    return if @report.user == current_user
+
+    redirect_to @report, alert: t('views.common.no_authorization')
   end
 end
