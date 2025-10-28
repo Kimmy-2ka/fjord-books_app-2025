@@ -1,0 +1,22 @@
+<div id="<%= dom_id comment %>" class="show-item comment">
+
+  <p>
+    <strong><%= User.model_name.human %>:</strong>
+    <%= comment.user.name.presence || comment.user.email %>
+  </p>
+
+  <p>
+    <strong><%= Comment.human_attribute_name(:created_at) %>:</strong>
+    <%= l(comment.created_at, format: :long) %>
+  </p>
+
+  <p>
+    <strong><%= Comment.human_attribute_name(:content) %>:</strong>
+    <%= comment.content %>
+  </p>
+
+  <% if comment.user == current_user %>
+    <%= button_to t('views.common.destroy', name: Comment.model_name.human), polymorphic_path([commentable, comment]), method: :delete %>
+  <% end %>
+
+</div>

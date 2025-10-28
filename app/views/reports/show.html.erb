@@ -1,0 +1,27 @@
+<h1><%= t('views.common.title_show', name: Report.model_name.human) %></h1>
+
+<div class="show-item">
+  <%= render partial: "reports/report", locals:{ report: @report } %>
+</div>
+
+<nav class="page-nav">
+  <% if @report.user == current_user %>
+    <%= link_to t('views.common.edit', name: Report.model_name.human), edit_report_path(@report) %> |
+    <%= link_to t('views.common.back', name: Report.model_name.human), reports_path %>
+
+    <%= button_to t('views.common.destroy', name: Report.model_name.human), @report, method: :delete %>
+  <% else %>
+    <%= link_to t('views.common.back', name: Report.model_name.human), reports_path %>
+  <% end %>
+</nav>
+
+<h2><%= Comment.model_name.human %></h2>
+
+<% if @comments.any? %>
+  <%= render partial: "comments/comment", collection: @comments, locals: { commentable: @report } %>
+<% else %>
+  <p><%= t('views.common.no_record', name: Comment.model_name.human) %></p>
+<% end %>
+
+<h2><%= t('views.common.new', name: Comment.model_name.human) %></h2>
+<%= render partial: "comments/form", locals: { commentable: @report } %>
