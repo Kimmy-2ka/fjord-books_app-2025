@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Report < ApplicationRecord
+  TARGET_URI = %r{http://localhost:3000/reports/(\d+)}
+
   belongs_to :user
   has_many :comments, as: :commentable, dependent: :destroy
 
@@ -19,5 +21,17 @@ class Report < ApplicationRecord
 
   def created_on
     created_at.to_date
+  end
+
+  def create_mentions
+    mentioning_ids = content.scan(TARGET_URI).flatten
+    mentioning_ids.each do |mentioning_id|
+      mentions.find_or_create_by(mentioning_report_id: mentioning_id) if Report.exists?(mentioning_id)
+    end
+  end
+
+  def update_mentions
+    mentions.destroy_all
+    create_mentions
   end
 end
