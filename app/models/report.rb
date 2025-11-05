@@ -15,6 +15,9 @@ class Report < ApplicationRecord
   validates :title, presence: true
   validates :content, presence: true
 
+  after_create :create_mentions
+  after_update :update_mentions
+
   def editable?(target_user)
     user == target_user
   end
