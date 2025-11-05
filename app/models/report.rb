@@ -24,9 +24,11 @@ class Report < ApplicationRecord
   end
 
   def create_mentions
-    mentioning_ids = content.scan(TARGET_URI).flatten
+    mentioning_ids = content.scan(TARGET_URI).flatten.uniq
     mentioning_ids.each do |mentioning_id|
-      mentions.find_or_create_by(mentioning_report_id: mentioning_id) if Report.exists?(mentioning_id)
+      next if mentioning_id.to_i == id
+
+      mentions.create!(mentioning_report_id: mentioning_id) if Report.exists?(mentioning_id)
     end
   end
 
