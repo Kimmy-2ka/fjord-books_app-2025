@@ -15,8 +15,7 @@ class Report < ApplicationRecord
   validates :title, presence: true
   validates :content, presence: true
 
-  after_create :create_mentions
-  after_update :update_mentions
+  after_save :create_mentions
 
   def editable?(target_user)
     user == target_user
@@ -27,16 +26,12 @@ class Report < ApplicationRecord
   end
 
   def create_mentions
+    mentions.destroy_all
     mentioning_ids = content.scan(TARGET_URI).flatten.uniq
     mentioning_ids.each do |mentioning_id|
       next if mentioning_id.to_i == id
 
       mentions.create!(mentioning_report_id: mentioning_id) if Report.exists?(mentioning_id)
     end
-  end
-
-  def update_mentions
-    mentions.destroy_all
-    create_mentions
   end
 end
