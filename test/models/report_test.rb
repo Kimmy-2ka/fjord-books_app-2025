@@ -4,14 +4,14 @@ require 'test_helper'
 
 class ReportTest < ActiveSupport::TestCase
   # 現在ログインしているユーザーが日報の投稿者であることを確認する。
-  test ' # editable? true ' do
+  test '# editable? true' do
     report = reports(:first_report)
     target_user = users(:alice)
     assert report.editable?(target_user)
   end
 
   # 現在ログインしているユーザーが日報の投稿者でなければfalseを返す。
-  test ' # editable? false ' do
+  test '# editable? false' do
     report = reports(:first_report)
     target_user = users(:bob)
     assert_not report.editable?(target_user)
