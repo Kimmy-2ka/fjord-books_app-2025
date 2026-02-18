@@ -24,6 +24,7 @@ class ReportsTest < ApplicationSystemTestCase
     click_on '登録する'
 
     assert_text '日報が作成されました。'
+    assert_text '今日はテストを勉強しました'
   end
 
   test 'should update Report' do
@@ -35,11 +36,17 @@ class ReportsTest < ApplicationSystemTestCase
     click_on '更新する'
 
     assert_text '日報が更新されました。'
+    assert_text '今日の日報を修正'
   end
 
   test 'should destroy Report' do
-    visit report_url(reports(:first_report))
+    report = reports(:first_report)
+    title = report.title
+
+    visit report_url(report)
     click_on 'この日報を削除'
+
     assert_text '日報が削除されました。'
+    assert_no_text title
   end
 end
