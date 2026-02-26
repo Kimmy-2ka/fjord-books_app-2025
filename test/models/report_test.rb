@@ -50,4 +50,21 @@ class ReportTest < ActiveSupport::TestCase
 
     assert_includes(mentioning_report.mentioning_reports, mentioned_report)
   end
+
+  # ほかの日報のURLが記載された日報を更新しURLを削除した時、言及の紐づきがなくなる。
+  test '# report_mention remove mention' do
+    mentioning_report = reports(:first_report)
+    mentioned_report = reports(:second_report)
+
+    mentioning_report.update(
+      content: "http://localhost:3000/reports/#{mentioned_report.id}を見ました。"
+    )
+
+    assert_includes(mentioning_report.mentioning_reports, mentioned_report)
+
+    mentioning_report.update(content: 'URLを削除。')
+    mentioning_report.reload
+
+    assert_not_includes(mentioning_report.mentioning_reports, mentioned_report)
+  end
 end
