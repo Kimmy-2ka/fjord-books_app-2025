@@ -26,8 +26,21 @@ class ReportTest < ActiveSupport::TestCase
     assert_equal Date.new(2025, 10, 26), report.created_on
   end
 
-  # 日報にほかの日報のURLが含まれるとき、保存した日報に言及が紐づく。
-  test '# report_mention' do
+  # 新規作成した日報にほかの日報のURLが含まれるとき、保存した日報に言及が紐づく。
+  test '# report_mention add mention when create' do
+    mentioned_report = reports(:first_report)
+
+    mentioning_report = Report.create!(
+      user: users(:alice),
+      title: '今日見た日報',
+      content: "http://localhost:3000/reports/#{mentioned_report.id}を見ました。"
+    )
+
+    assert_includes(mentioning_report.mentioning_reports, mentioned_report)
+  end
+
+  # 更新した日報にほかの日報のURLが含まれるとき、保存した日報に言及が紐づく。
+  test '# report_mention add mention when update' do
     mentioning_report = reports(:first_report)
     mentioned_report = reports(:second_report)
 
