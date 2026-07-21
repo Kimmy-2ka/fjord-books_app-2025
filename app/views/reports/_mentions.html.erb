@@ -1,0 +1,18 @@
+<div class="mentions-container">
+  <strong><%= t('.title') %>:</strong>
+
+  <% if @report.mentioned_reports.present? %>
+    <ul>
+      <% @report.mentioned_reports.order(id: :desc).each do |mentioned_report| %>
+        <li>
+          <%= link_to mentioned_report.title, report_path(mentioned_report) %>
+          <small>
+            <%= t('.created_ago', time: time_ago_in_words(mentioned_report.created_at)) %>
+          </small>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    (<%= t('views.common.no_exit', name: Mention.model_name.human) %>)
+  <% end %>
+</div>

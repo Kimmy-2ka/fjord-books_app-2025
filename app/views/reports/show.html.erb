@@ -5,6 +5,7 @@
 </div>
 
 <%= render 'application/comments', commentable: @report %>
+<%= render 'mentions', locale: @report %>
 
 <nav class="page-nav">
   <% if @report.editable?(current_user) %>
